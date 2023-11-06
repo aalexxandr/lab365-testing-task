@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 
 export const usePeople = () => {
 	const getPeople = (page: number) => {
-		console.log('in request:', page);
 		const { isPending, error, data } = useQuery({
 			queryKey: ['people', page],
 			queryFn: (): Promise<IResponse<IPerson>> =>

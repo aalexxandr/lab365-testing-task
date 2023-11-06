@@ -1,21 +1,27 @@
 import { RouteProps } from 'react-router-dom';
 import { Main } from 'pages/Main';
 import { Favorites } from 'pages/Favorites';
-import { Peoples } from 'pages/Peoples';
+import { Peoples } from 'pages/People';
 import { Person } from 'pages/Person';
 
 enum Routes {
 	MAIN = 'main',
-	FAVORITES = 'favorites',
-	PEOPLES = 'peoples',
+	PEOPLE = 'people',
 	PERSON = 'person',
+	FAVORITES = 'favorites',
 }
 
 const RouterPaths: Record<Routes, string> = {
 	[Routes.MAIN]: '/',
+	[Routes.PEOPLE]: '/people',
+	[Routes.PERSON]: '/people/:id',
 	[Routes.FAVORITES]: '/favorites',
-	[Routes.PEOPLES]: '/peoples',
-	[Routes.PERSON]: '/peoples/:id',
+};
+
+export const RoutesRU: Record<string, string> = {
+	[RouterPaths.main]: 'Главная',
+	[RouterPaths.people]: 'Люди',
+	[RouterPaths.favorites]: 'Избранные',
 };
 
 export const RouterConfig: Record<Routes, RouteProps> = {
@@ -23,16 +29,16 @@ export const RouterConfig: Record<Routes, RouteProps> = {
 		element: <Main />,
 		path: RouterPaths.main,
 	},
-	[Routes.FAVORITES]: {
-		element: <Favorites />,
-		path: RouterPaths.favorites,
-	},
-	[Routes.PEOPLES]: {
+	[Routes.PEOPLE]: {
 		element: <Peoples />,
-		path: RouterPaths.peoples,
+		path: RouterPaths.people,
 	},
 	[Routes.PERSON]: {
 		element: <Person />,
 		path: RouterPaths.person,
+	},
+	[Routes.FAVORITES]: {
+		element: <Favorites />,
+		path: RouterPaths.favorites,
 	},
 };

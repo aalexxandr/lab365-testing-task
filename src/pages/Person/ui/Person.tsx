@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 export const Person = () => {
-	let { id } = useParams();
+	const { id } = useParams();
 
 	return <div>Person: {id}</div>;
 };

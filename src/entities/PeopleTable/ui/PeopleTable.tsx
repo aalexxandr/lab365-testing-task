@@ -1,6 +1,7 @@
 import { Loader } from 'shared/ui/Loader';
 import { TablePagination } from './TablePagination';
-import { ReactComponent as StarIcon } from 'shared/assets/icons/Star.svg';
+import { ToggleFavoriteButton } from './ToggleFavoriteButton';
+import { IPerson } from 'shared/types';
 
 interface IPeopleTableProps {
 	peopleData?: IPerson[];
@@ -8,6 +9,7 @@ interface IPeopleTableProps {
 	isPending: boolean;
 	page: number;
 	setPage: (pageNumber: number) => void;
+	onToggleFavorite: (person: IPerson) => void;
 }
 
 export const PeopleTable = ({
@@ -16,6 +18,7 @@ export const PeopleTable = ({
 	isPending,
 	page,
 	setPage,
+	onToggleFavorite,
 }: IPeopleTableProps) => {
 	return (
 		<div className='-m-1.5 overflow-x-auto'>
@@ -69,9 +72,9 @@ export const PeopleTable = ({
 													{person.hair_color}
 												</td>
 												<td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
-													<button>
-														<StarIcon height='20' width='20' />
-													</button>
+													<ToggleFavoriteButton
+														onToggleFavorite={() => onToggleFavorite(person)}
+													/>
 												</td>
 											</tr>
 										);

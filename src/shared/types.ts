@@ -1,11 +1,12 @@
-interface IPerson {
+export interface IPerson {
 	name: string;
 	height: string;
 	mass: string;
 	hair_color: string;
+	created: string;
 }
 
-interface IResponse<T> {
+export interface IResponse<T> {
 	count: number;
 	next?: string;
 	previous?: string;

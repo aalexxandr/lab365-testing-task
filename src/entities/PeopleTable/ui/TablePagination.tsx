@@ -1,22 +1,15 @@
-import { SetURLSearchParams } from 'react-router-dom';
-
 interface TablePaginationProps {
-	peopleData: IResponse<IPerson>;
+	dataCount: number;
 	page: number;
-	setSearchParam: SetURLSearchParams;
+	setPage: (pageNumber: number) => void;
 }
 
 export const TablePagination = ({
-	peopleData,
+	dataCount,
 	page,
-	setSearchParam,
+	setPage,
 }: TablePaginationProps) => {
-	const totalPages =
-		Math.ceil(peopleData.count / 9) - Math.ceil((peopleData.count % 9) / 9);
-
-	const setPage = (pageNumber: number) => {
-		setSearchParam(`page=${pageNumber}`);
-	};
+	const totalPages = Math.ceil(dataCount / 9) - Math.ceil((dataCount % 9) / 9);
 
 	const isNextButtonActive = page !== totalPages;
 	const isPrevButtonActive = page !== 1;

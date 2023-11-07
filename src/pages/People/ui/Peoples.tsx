@@ -1,5 +1,5 @@
-import { PeopleTable } from 'widgets/PeopleTable';
+import { AllPeopleTable } from 'widgets/AllPeopleTable';
 
 export const Peoples = () => {
-	return <PeopleTable />;
+	return <AllPeopleTable />;
 };

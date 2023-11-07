@@ -1,3 +1,5 @@
+import { FavoritePeopleTable } from 'widgets/FavoritePeopleTable';
+
 export const Favorites = () => {
-	return <div>favorites</div>;
+	return <FavoritePeopleTable />;
 };

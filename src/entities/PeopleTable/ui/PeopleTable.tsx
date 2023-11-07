@@ -8,9 +8,9 @@ interface IPeopleTableProps {
 	peopleData?: IPerson[];
 	favoritePeople: IPerson[];
 	peopleDataCount?: number;
-	isPending: boolean;
-	page: number;
-	setPage: (pageNumber: number) => void;
+	isPending?: boolean;
+	page?: number;
+	setPage?: (pageNumber: number) => void;
 	onToggleFavorite: (person: IPerson) => void;
 }
 
@@ -91,7 +91,7 @@ export const PeopleTable = ({
 							)}
 						</tbody>
 					</table>
-					{peopleData && peopleDataCount && (
+					{peopleData && peopleDataCount && page && setPage && (
 						<TablePagination
 							dataCount={peopleDataCount}
 							page={page}

@@ -2,6 +2,7 @@ import { usePeople } from 'shared/api/people';
 import { Loader } from 'shared/ui/Loader';
 import { TablePagination } from './TablePagination';
 import { useSearchParams } from 'react-router-dom';
+import { ReactComponent as StarIcon } from 'shared/assets/icons/Star.svg';
 
 export const PeopleTable = () => {
 	const [searchParams, setSearchParam] = useSearchParams('page=1');
@@ -63,12 +64,9 @@ export const PeopleTable = () => {
 														{person.hair_color}
 													</td>
 													<td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
-														<a
-															className='text-blue-500 hover:text-blue-700'
-															href='#'
-														>
-															Delete
-														</a>
+														<button>
+															<StarIcon height='20' width='20' />
+														</button>
 													</td>
 												</tr>
 											);

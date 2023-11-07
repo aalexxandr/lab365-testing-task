@@ -17,16 +17,23 @@ export const TablePagination = ({
 	const setPage = (pageNumber: number) => {
 		setSearchParam(`page=${pageNumber}`);
 	};
+
+	const isNextButtonActive = page !== totalPages;
+	const isPrevButtonActive = page !== 1;
+
 	return (
 		<div className='py-1 px-4 relative'>
 			<nav className='flex items-center space-x-2'>
-				<a
-					className='text-gray-400 hover:text-blue-600 p-4 inline-flex items-center gap-2 font-medium rounded-md'
-					href='#'
+				<button
+					onClick={() => setPage(page - 1)}
+					disabled={!isPrevButtonActive}
+					className={`text-gray-400  p-4 inline-flex items-center gap-2 font-medium rounded-md ${
+						isPrevButtonActive ? 'hover:text-blue-600' : ''
+					}`}
 				>
 					<span aria-hidden='true'>«</span>
 					<span className='sr-only'>Предыдущая</span>
-				</a>
+				</button>
 
 				{Array.from({ length: totalPages }, (_, index) => (
 					<button
@@ -41,13 +48,16 @@ export const TablePagination = ({
 						{index + 1}
 					</button>
 				))}
-				<a
-					className='text-gray-400 hover:text-blue-600 p-4 inline-flex items-center gap-2 font-medium rounded-md'
-					href='#'
+				<button
+					onClick={() => setPage(page + 1)}
+					disabled={!isNextButtonActive}
+					className={`text-gray-400 p-4 inline-flex items-center gap-2 font-medium rounded-md ${
+						isNextButtonActive ? 'hover:text-blue-600' : ''
+					} `}
 				>
 					<span className='sr-only'>Следующая</span>
 					<span aria-hidden='true'>»</span>
-				</a>
+				</button>
 			</nav>
 		</div>
 	);

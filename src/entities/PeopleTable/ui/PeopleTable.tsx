@@ -2,9 +2,11 @@ import { Loader } from 'shared/ui/Loader';
 import { TablePagination } from './TablePagination';
 import { ToggleFavoriteButton } from './ToggleFavoriteButton';
 import { IPerson } from 'shared/types';
+import { favoriteCondition } from 'shared/helpers';
 
 interface IPeopleTableProps {
 	peopleData?: IPerson[];
+	favoritePeople: IPerson[];
 	peopleDataCount?: number;
 	isPending: boolean;
 	page: number;
@@ -14,6 +16,7 @@ interface IPeopleTableProps {
 
 export const PeopleTable = ({
 	peopleData,
+	favoritePeople,
 	peopleDataCount,
 	isPending,
 	page,
@@ -57,6 +60,10 @@ export const PeopleTable = ({
 							{peopleData && (
 								<>
 									{peopleData.map((person, index) => {
+										const isFavoritePerson = favoritePeople.some(
+											favoritePerson =>
+												favoriteCondition(favoritePerson, person)
+										);
 										return (
 											<tr key={index}>
 												<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800'>
@@ -73,6 +80,7 @@ export const PeopleTable = ({
 												</td>
 												<td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
 													<ToggleFavoriteButton
+														isFavoritePerson={isFavoritePerson}
 														onToggleFavorite={() => onToggleFavorite(person)}
 													/>
 												</td>

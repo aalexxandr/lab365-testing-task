@@ -1,7 +1,7 @@
 import { FAVORITE_PEOPLE_STORAGE } from 'shared/constants';
 import { IPerson } from 'shared/types';
 
-export const getFavoritePeople = (): IPerson[] => {
+export const getFavoritePeopleStorage = (): IPerson[] => {
 	const favoritePeople = localStorage.getItem(FAVORITE_PEOPLE_STORAGE);
 	return favoritePeople ? JSON.parse(favoritePeople) : [];
 };

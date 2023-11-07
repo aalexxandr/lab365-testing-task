@@ -2,10 +2,11 @@ import { makeAutoObservable } from 'mobx';
 import { IPromiseBasedObservable, fromPromise } from 'mobx-utils';
 import { getPeople } from 'shared/api/people';
 import {
-	getFavoritePeople,
+	getFavoritePeopleStorage,
 	setFavoritePeople,
-} from 'shared/helpers/localstorage';
+} from 'shared/api/localStorage';
 import { IPerson, IResponse } from 'shared/types';
+import { favoriteCondition } from 'shared/helpers';
 
 class PeopleStore {
 	people?: IPromiseBasedObservable<IResponse<IPerson>>;
@@ -21,20 +22,26 @@ class PeopleStore {
 		this.people = peopleRes;
 	};
 
+	getFavoritePeople = () => {
+		this.favoritePeople = getFavoritePeopleStorage();
+	};
+
 	onToggleFavorite = (person: IPerson) => {
-		const favoriteCondition = (favoritePerson: IPerson) =>
-			favoritePerson.name === person.name &&
-			favoritePerson.created === person.created;
+		const favoritePeople = getFavoritePeopleStorage();
 
-		const favoritePeople = getFavoritePeople();
-
-		const isFavoritePerson = favoritePeople.some(favoriteCondition);
+		const isFavoritePerson = favoritePeople.some(favoritePerson =>
+			favoriteCondition(favoritePerson, person)
+		);
 
 		if (isFavoritePerson) {
-			const favoriteIndex = favoritePeople.findIndex(favoriteCondition);
+			const favoriteIndex = favoritePeople.findIndex(favoritePerson =>
+				favoriteCondition(favoritePerson, person)
+			);
 			favoritePeople.splice(favoriteIndex, 1);
+			this.favoritePeople.splice(favoriteIndex, 1);
 			setFavoritePeople(favoritePeople);
 		} else {
+			this.favoritePeople.push(person);
 			setFavoritePeople([...favoritePeople, person]);
 		}
 	};

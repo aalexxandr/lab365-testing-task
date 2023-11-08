@@ -17,11 +17,15 @@ export const FavoritePeopleTable = observer(() => {
 
 	return (
 		<div className='flex flex-col mt-10'>
-			<PeopleTable
-				peopleData={toJS(favoritePeople)}
-				favoritePeople={toJS(favoritePeople)}
-				onToggleFavorite={onToggleFavorite}
-			/>
+			{favoritePeople.length ? (
+				<PeopleTable
+					peopleData={toJS(favoritePeople)}
+					favoritePeople={toJS(favoritePeople)}
+					onToggleFavorite={onToggleFavorite}
+				/>
+			) : (
+				<div className='text-center'>Раздел избранных пуст</div>
+			)}
 		</div>
 	);
 });

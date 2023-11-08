@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { IPerson, IResponse } from 'shared/types';
 import { toJS } from 'mobx';
+import { PeopleSearch } from 'features/PeopleSearch';
 
 export const AllPeopleTable = observer(() => {
 	const [searchParams, setSearchParam] = useSearchParams('page=1');
@@ -20,9 +21,14 @@ export const AllPeopleTable = observer(() => {
 		onToggleFavorite,
 		getFavoritePeople,
 		favoritePeople,
+		searchPeople,
+		searchedPeople,
 	} = PeopleStore;
 
 	const peopleRes = people?.value as IResponse<IPerson> | undefined;
+	const searchedPeopleRes = searchedPeople?.value as
+		| IResponse<IPerson>
+		| undefined;
 
 	useEffect(() => {
 		getPeople(page);
@@ -33,7 +39,13 @@ export const AllPeopleTable = observer(() => {
 	}, [getFavoritePeople]);
 
 	return (
-		<div className='flex flex-col mt-10'>
+		<div className='mt-10'>
+			<PeopleSearch
+				isPending={searchedPeople?.state === 'pending'}
+				searchPeople={searchPeople}
+				searchedPeople={searchedPeopleRes?.results}
+			/>
+
 			<PeopleTable
 				page={page}
 				setPage={setPage}

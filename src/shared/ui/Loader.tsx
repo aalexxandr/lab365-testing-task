@@ -1,8 +1,13 @@
-export const Loader = () => {
+interface LoadedProps {
+	w: string;
+	h: string;
+}
+
+export const Loader = ({ w, h }: LoadedProps) => {
 	return (
 		<>
 			<span
-				className='animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full'
+				className={`animate-spin inline-block border-[3px] border-current border-t-transparent text-blue-600 rounded-full w-${w} h-${h}`}
 				role='status'
 				aria-label='loading'
 			>

@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { IPromiseBasedObservable, fromPromise } from 'mobx-utils';
-import { getPeople } from 'shared/api/people';
+import { getPeople, searchPeople } from 'shared/api/people';
 import {
 	getFavoritePeopleStorage,
 	setFavoritePeople,
@@ -11,6 +11,7 @@ import { favoriteCondition } from 'shared/helpers';
 class PeopleStore {
 	people?: IPromiseBasedObservable<IResponse<IPerson>>;
 	favoritePeople: IPerson[];
+	searchedPeople?: IPromiseBasedObservable<IResponse<IPerson>>;
 
 	constructor() {
 		this.favoritePeople = [];
@@ -20,6 +21,11 @@ class PeopleStore {
 	getPeople = (page: number) => {
 		const peopleRes = fromPromise<IResponse<IPerson>>(getPeople(page));
 		this.people = peopleRes;
+	};
+
+	searchPeople = (name: string) => {
+		const peopleRes = fromPromise<IResponse<IPerson>>(searchPeople(name));
+		this.searchedPeople = peopleRes;
 	};
 
 	getFavoritePeople = () => {

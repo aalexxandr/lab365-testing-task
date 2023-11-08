@@ -100,7 +100,7 @@ export const PeopleTable = ({
 					)}
 					{isPending && (
 						<div className='flex justify-center mb-4 mt-4'>
-							<Loader />
+							<Loader w='6' h='6' />
 						</div>
 					)}
 				</div>

@@ -9,3 +9,11 @@ export const getPeople = (page: number): Promise<IResponse<IPerson>> =>
 		.catch(() => {
 			toast.error('Что-то пошло не так...');
 		});
+
+export const searchPeople = (name: string): Promise<IResponse<IPerson>> =>
+	axios
+		.get(`https://swapi.dev/api/people/?search=${name}`)
+		.then(response => response.data)
+		.catch(() => {
+			toast.error('Что-то пошло не так...');
+		});

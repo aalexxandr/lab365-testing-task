@@ -1,8 +1,9 @@
 import { Loader } from 'shared/ui/Loader';
 import { TablePagination } from './TablePagination';
-import { ToggleFavoriteButton } from './ToggleFavoriteButton';
 import { IPerson } from 'shared/types';
-import { favoriteCondition } from 'shared/helpers';
+import { favoriteCondition, getPersonId } from 'shared/helpers';
+import { Link } from 'react-router-dom';
+import { ToggleFavoriteButton } from 'shared/ui/ToggleFavoriteButton';
 
 interface IPeopleTableProps {
 	peopleData?: IPerson[];
@@ -64,19 +65,43 @@ export const PeopleTable = ({
 											favoritePerson =>
 												favoriteCondition(favoritePerson, person)
 										);
+
 										return (
-											<tr key={index} className='hover:bg-gray-100'>
-												<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800'>
-													{person.name}
+											<tr
+												key={index}
+												className='hover:bg-gray-100 cursor-pointer'
+											>
+												<td>
+													<Link
+														to={`/people/${getPersonId(person.url)}`}
+														className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 block w-full'
+													>
+														{person.name}
+													</Link>
 												</td>
-												<td className='px-6 py-4 whitespace-nowrap text-sm text-gray-800'>
-													{person.height}
+												<td>
+													<Link
+														to={`/people/${getPersonId(person.url)}`}
+														className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 block w-full'
+													>
+														{person.height}
+													</Link>
 												</td>
-												<td className='px-6 py-4 whitespace-nowrap text-sm text-gray-800'>
-													{person.mass}
+												<td>
+													<Link
+														to={`/people/${getPersonId(person.url)}`}
+														className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 block w-full'
+													>
+														{person.mass}
+													</Link>
 												</td>
-												<td className='px-6 py-4 whitespace-nowrap text-sm text-gray-800'>
-													{person.hair_color}
+												<td>
+													<Link
+														to={`/people/${getPersonId(person.url)}`}
+														className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 block w-full'
+													>
+														{person.hair_color}
+													</Link>
 												</td>
 												<td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
 													<ToggleFavoriteButton

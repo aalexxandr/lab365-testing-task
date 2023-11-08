@@ -3,9 +3,9 @@ import { ReactComponent as SearchIcon } from 'shared/assets/icons/Search.svg';
 import { FormEvent, useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { SearchResults } from './SearchResults';
-import { IPerson } from 'shared/types';
 import { Loader } from 'shared/ui/Loader';
 import { useDebounce } from 'shared/hooks/useDebounce';
+import { IPerson } from 'shared/types';
 
 interface PeopleSearchProps {
 	searchPeople: (searchValue: string) => void;
@@ -18,7 +18,7 @@ export const PeopleSearch = observer(
 		const [searchValue, setSearchValue] = useState('');
 		const { debouncedValue: debouncedSearchValue, isDebouncing } = useDebounce(
 			searchValue,
-			2000
+			1000
 		);
 
 		const handleChange = (e: FormEvent<HTMLInputElement>) => {

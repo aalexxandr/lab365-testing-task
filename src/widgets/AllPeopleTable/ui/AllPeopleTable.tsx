@@ -25,9 +25,9 @@ export const AllPeopleTable = observer(() => {
 		searchedPeople,
 	} = PeopleStore;
 
-	const peopleRes = people?.value as IResponse<IPerson> | undefined;
+	const peopleRes = people?.value as IResponse<IPerson[]> | undefined;
 	const searchedPeopleRes = searchedPeople?.value as
-		| IResponse<IPerson>
+		| IResponse<IPerson[]>
 		| undefined;
 
 	useEffect(() => {

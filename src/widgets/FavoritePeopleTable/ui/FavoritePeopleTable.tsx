@@ -1,5 +1,5 @@
 import { PeopleTable } from 'entities/PeopleTable';
-import { PeopleStore } from 'app/stores/people.ts';
+import { PeopleStore } from '../../../app/stores/people';
 import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { toJS } from 'mobx';

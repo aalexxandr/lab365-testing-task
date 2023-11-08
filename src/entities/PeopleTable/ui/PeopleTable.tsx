@@ -65,7 +65,7 @@ export const PeopleTable = ({
 												favoriteCondition(favoritePerson, person)
 										);
 										return (
-											<tr key={index}>
+											<tr key={index} className='hover:bg-gray-100'>
 												<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800'>
 													{person.name}
 												</td>
@@ -100,7 +100,7 @@ export const PeopleTable = ({
 					)}
 					{isPending && (
 						<div className='flex justify-center mb-4 mt-4'>
-							<Loader w='6' h='6' />
+							<Loader className='w-6 h-6' />
 						</div>
 					)}
 				</div>

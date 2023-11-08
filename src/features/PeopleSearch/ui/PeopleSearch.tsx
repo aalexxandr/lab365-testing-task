@@ -51,7 +51,7 @@ export const PeopleSearch = observer(
 					/>
 					<div className='absolute inset-y-0 left-0 flex items-center pointer-events-none pl-4'>
 						{isPending ? (
-							<Loader w='3' h='3' />
+							<Loader className='w-3 h-3' />
 						) : (
 							<SearchIcon height='15' width='15' className='text-gray-800' />
 						)}

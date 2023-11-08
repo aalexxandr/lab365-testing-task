@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { PeopleTable } from 'entities/PeopleTable';
-import { PeopleStore } from 'app/stores/people';
+import { PeopleStore } from 'app/stores/people.ts';
 import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { IPerson, IResponse } from 'shared/types';

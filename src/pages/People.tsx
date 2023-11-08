@@ -1,5 +1,5 @@
 import { AllPeopleTable } from 'widgets/AllPeopleTable';
 
-export const Peoples = () => {
+export const People = () => {
 	return <AllPeopleTable />;
 };

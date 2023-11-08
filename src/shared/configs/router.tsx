@@ -1,7 +1,7 @@
 import { RouteProps } from 'react-router-dom';
 import { Main } from 'pages/Main';
 import { Favorites } from 'pages/Favorites';
-import { Peoples } from 'pages/People';
+import { People } from 'pages/People';
 import { Person } from 'pages/Person';
 
 enum Routes {
@@ -30,7 +30,7 @@ export const RouterConfig: Record<Routes, RouteProps> = {
 		path: RouterPaths.main,
 	},
 	[Routes.PEOPLE]: {
-		element: <Peoples />,
+		element: <People />,
 		path: RouterPaths.people,
 	},
 	[Routes.PERSON]: {

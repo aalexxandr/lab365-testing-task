@@ -8,7 +8,7 @@ import {
 import { IPerson, IResponse } from 'shared/types';
 import { favoriteCondition } from 'shared/helpers';
 
-class PeopleStore {
+class Store {
 	people?: IPromiseBasedObservable<IResponse<IPerson[]>>;
 	favoritePeople: IPerson[];
 	searchedPeople?: IPromiseBasedObservable<IResponse<IPerson[]>>;
@@ -58,4 +58,5 @@ class PeopleStore {
 	};
 }
 
-export default new PeopleStore();
+const PeopleStore = new Store();
+export { PeopleStore };

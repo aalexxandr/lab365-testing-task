@@ -33,7 +33,7 @@ export const PersonCard = observer(() => {
 			{!!personRes && isFulfilled && (
 				<PersonCardEntity
 					person={personRes}
-					isFavorite={favoritePeople.some(favoritePerson =>
+					isFavorite={favoritePeople.some((favoritePerson: IPerson) =>
 						favoriteCondition(favoritePerson, personRes)
 					)}
 					onToggleFavorite={() => onToggleFavorite(personRes)}

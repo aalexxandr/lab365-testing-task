@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { IPerson } from 'shared/types';
-import { PeopleStore } from '../../../app/stores/people';
+import { PeopleStore } from 'app/stores/people';
 import { Loader } from 'shared/ui/Loader';
 import { PersonNotFound } from './PersonNotFound';
 import { PersonCard as PersonCardEntity } from 'entities/PersonCard';

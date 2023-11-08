@@ -1,18 +1,26 @@
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { IPerson } from 'shared/types';
+import PeopleStore from 'app/stores/people';
 import { Loader } from 'shared/ui/Loader';
 import { PersonNotFound } from './PersonNotFound';
+import { PersonCard as PersonCardEntity } from 'entities/PersonCard';
+import { observer } from 'mobx-react-lite';
+import { favoriteCondition } from 'shared/helpers';
 
-interface IPersonCardProps {
-	person?: IPerson;
-	isPending: boolean;
-	isFulfilled: boolean;
-}
+export const PersonCard = observer(() => {
+	const { id } = useParams();
+	const { getPerson, person, favoritePeople, onToggleFavorite } = PeopleStore;
 
-export const PersonCard = ({
-	person,
-	isPending,
-	isFulfilled,
-}: IPersonCardProps) => {
+	const personRes = person?.value as IPerson | undefined;
+
+	const isPending = person?.state === 'pending';
+	const isFulfilled = person?.state === 'fulfilled';
+
+	useEffect(() => {
+		getPerson(Number(id));
+	}, [getPerson, id]);
+
 	return (
 		<>
 			{isPending && (
@@ -20,20 +28,17 @@ export const PersonCard = ({
 					<Loader className='h-10 w-10' />
 				</div>
 			)}
-			{!person && isFulfilled && <PersonNotFound />}
+			{!personRes && isFulfilled && <PersonNotFound />}
 
-			{!!person && isFulfilled && (
-				<ul className='list-disc list-outside space-y-5 ps-5 text-lg text-gray-800'>
-					<li className='ps-2'>Имя: {person.name}</li>
-					<li className='ps-2'>День рождения: {person.birth_year}</li>
-					<li className='ps-2'>Цвет глаз: {person.eye_color}</li>
-					<li className='ps-2'>Гендер: {person.gender}</li>
-					<li className='ps-2'>Цвет волос: {person.hair_color}</li>
-					<li className='ps-2'>Рост: {person.height}</li>
-					<li className='ps-2'>Вес: {person.mass}</li>
-					<li className='ps-2'>Цвет кожи: {person.skin_color}</li>
-				</ul>
+			{!!personRes && isFulfilled && (
+				<PersonCardEntity
+					person={personRes}
+					isFavorite={favoritePeople.some(favoritePerson =>
+						favoriteCondition(favoritePerson, personRes)
+					)}
+					onToggleFavorite={() => onToggleFavorite(personRes)}
+				/>
 			)}
 		</>
 	);
-};
+});
